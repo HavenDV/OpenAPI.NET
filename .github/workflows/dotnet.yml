@@ -1,0 +1,16 @@
+name: Publish
+on:
+  push:
+    branches:
+      - nuget
+
+jobs:
+  publish:
+    name: Publish
+    uses: HavenDV/workflows/.github/workflows/dotnet_build-test-publish.yml@main
+    with:
+      generate-build-number: false
+      conventional-commits-publish-conditions: false
+      enable-caching: false
+    secrets:
+      nuget-key: ${{ secrets.NUGET_KEY }}
